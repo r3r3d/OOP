@@ -1,0 +1,44 @@
+{% extends 'main/base.html' %}
+{% load bootstrap4 %}
+{% load thumbnail %}
+{% load static %}
+
+{% block title %}
+    Главная страница
+{% endblock %}
+
+{% block content %}
+<h2 class="mb-2">Последние 4 выполненных заявки:</h2>
+    <p class="text-right font-italic">Количество заявок, находящихся в статусе «Принято в работу»: {{ counter }}</p>
+    </div>
+
+    {% if bbs %}
+        <ul class="list-unstyled">
+            {% for bb in bbs %}
+                <li class="media my-5 p-3 border"style="width:1000px;margin-left:480px;">
+                    {% url 'detail' rubric_pk=rubric.pk pk=bb.id as url %}
+                    <a href="{{ url }}{{ all }}">
+                        {% if bb.image %}
+                            <img class="mr-3" src="{% thumbnail bb.image 'default' %}">
+                        {% else %}
+                            <img class="mr-3" src="{% static 'rubric/empty.jpg' %}">
+                        {% endif %}
+                    </a>
+                    <div class="media-body">
+                        <h3><a href="{{ url }}/{{bb.rubric.id}}/{{ bb.pk }}">{{ bb.title }}</a></h3>
+                        <div>{{ bb.content }}</div>
+                        <p class="text-right font-italic">Cтатус {{ bb.status }}</p>
+                        <p class="text-right font-italic">{{ bb.created_at }}</p>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
+
+{% block task %}
+
+    <h5  class="mr-md-auto p-2">Дизайн интерьера Резаев Родион</h5>
+{% endblock %}
+
+
