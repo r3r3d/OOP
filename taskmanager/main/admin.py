@@ -17,6 +17,8 @@ class SuperRubricAdmin(admin.ModelAdmin):
    inlines = (SubRubricInline,)
 
 admin.site.register(SuperRubric, SuperRubricAdmin)
+
+
 class SubRubricAdmin(admin.ModelAdmin):
    form = SubRubricForm
 
@@ -26,9 +28,6 @@ admin.site.register(SubRubric, SubRubricAdmin)
 
 class AdditionalImageInline(admin.TabularInline):
    model = AdditionalImage
-
-
-
 
 
 class BbAdmin(admin.ModelAdmin):
